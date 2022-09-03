@@ -66,6 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // ),
   ];
 
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.date!.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
+
   void _addNewTransaction(String title, double amount) {
     final newTx = Transaction(
         id: DateTime.now().toString(),
@@ -100,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: ListView(children: <Widget>[
-        Chart(),
+        Chart(_recentTransactions),
         TransactionList(_userTransactions),
       ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
