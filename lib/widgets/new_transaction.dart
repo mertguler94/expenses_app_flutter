@@ -1,7 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors, prefer_const_constructors_in_immutables
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -10,7 +6,7 @@ import './adaptive_text_button.dart';
 class NewTransaction extends StatefulWidget {
   final Function addNewTransaction;
 
-  NewTransaction(this.addNewTransaction, {Key? key}) : super(key: key);
+  const NewTransaction(this.addNewTransaction, {Key? key}) : super(key: key);
 
   @override
   State<NewTransaction> createState() => _NewTransactionState();
@@ -73,7 +69,7 @@ class _NewTransactionState extends State<NewTransaction> {
                     const TextInputType.numberWithOptions(decimal: true),
                 onSubmitted: ((_) => _submitData()),
               ),
-              Container(
+              SizedBox(
                 height: 70,
                 child: Row(
                   children: [

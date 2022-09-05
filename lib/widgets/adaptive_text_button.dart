@@ -13,7 +13,7 @@ class AdaptiveTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Platform.isIOS
-        ? CupertinoButton(child: Text(text), onPressed: datePickerFunction)
+        ? CupertinoButton(onPressed: datePickerFunction, child: Text(text))
         : TextButton(onPressed: datePickerFunction, child: Text(text));
   }
 }

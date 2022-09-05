@@ -1,7 +1,5 @@
 import 'dart:io';
 
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
@@ -33,7 +31,7 @@ class MyApp extends StatelessWidget {
             .copyWith(primary: Colors.purple, secondary: Colors.amber),
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
-            headline6: TextStyle(
+            headline6: const TextStyle(
                 fontFamily: 'OpenSans',
                 fontWeight: FontWeight.bold,
                 fontSize: 18)),
@@ -41,19 +39,19 @@ class MyApp extends StatelessWidget {
             titleTextStyle: ThemeData.light()
                 .textTheme
                 .copyWith(
-                    headline6: TextStyle(
+                    headline6: const TextStyle(
                         fontFamily: 'OpenSans',
                         fontSize: 20,
                         fontWeight: FontWeight.bold))
                 .headline6),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -79,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
-      return tx.date!.isAfter(DateTime.now().subtract(Duration(days: 7)));
+      return tx.date!.isAfter(DateTime.now().subtract(const Duration(days: 7)));
     }).toList();
   }
 
@@ -116,12 +114,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final PreferredSizeWidget appBar = (Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text('Expenses'),
+            middle: const Text('Expenses'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 CupertinoButton(
-                    child: Icon(CupertinoIcons.add),
+                    child: const Icon(CupertinoIcons.add),
                     onPressed: () {
                       _startAddNewTransaction(context);
                     }),
@@ -135,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     _startAddNewTransaction(context);
                   },
-                  icon: Icon(Icons.add)),
+                  icon: const Icon(Icons.add)),
             ],
           )) as PreferredSizeWidget;
 
@@ -179,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
           if (!isLandscape) txListWidget,
           if (isLandscape)
             _showChart
-                ? Container(
+                ? SizedBox(
                     height: (mediaQuery.size.height -
                             appBar.preferredSize.height -
                             mediaQuery.padding.top) *
@@ -203,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () {
                       _startAddNewTransaction(context);
                     },
-                    child: Icon(Icons.add),
+                    child: const Icon(Icons.add),
                   ),
           );
   }
