@@ -73,42 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
       amount: 28.54,
       date: DateTime.now(),
     ),
-    Transaction(
-      id: 't2',
-      title: 'Groceries',
-      amount: 28.54,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Groceries',
-      amount: 28.54,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Groceries',
-      amount: 28.54,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Groceries',
-      amount: 28.54,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Groceries',
-      amount: 28.54,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Groceries',
-      amount: 28.54,
-      date: DateTime.now(),
-    ),
   ];
 
   bool _showChart = false;
@@ -184,42 +148,45 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final pageBody = SafeArea(
         child: SingleChildScrollView(
-            child: Column(children: <Widget>[
-      if (isLandscape)
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Show Chart',
-              style: Theme.of(context).textTheme.headline6,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+          if (isLandscape)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Show Chart',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                Switch.adaptive(
+                    activeColor: Theme.of(context).colorScheme.secondary,
+                    value: _showChart,
+                    onChanged: (val) {
+                      setState(() {
+                        _showChart = val;
+                      });
+                    }),
+              ],
             ),
-            Switch.adaptive(
-                activeColor: Theme.of(context).colorScheme.secondary,
-                value: _showChart,
-                onChanged: (val) {
-                  setState(() {
-                    _showChart = val;
-                  });
-                }),
-          ],
-        ),
-      if (!isLandscape)
-        SizedBox(
-            height: (mediaQuery.size.height -
-                    appBar.preferredSize.height -
-                    mediaQuery.padding.top) *
-                0.3,
-            child: Chart(_recentTransactions)),
-      if (!isLandscape) txListWidget,
-      _showChart
-          ? SizedBox(
-              height: (mediaQuery.size.height -
-                      appBar.preferredSize.height -
-                      mediaQuery.padding.top) *
-                  0.7,
-              child: Chart(_recentTransactions))
-          : txListWidget,
-    ])));
+          if (!isLandscape)
+            SizedBox(
+                height: (mediaQuery.size.height -
+                        appBar.preferredSize.height -
+                        mediaQuery.padding.top) *
+                    0.3,
+                child: Chart(_recentTransactions)),
+          if (!isLandscape) txListWidget,
+          if (isLandscape)
+            _showChart
+                ? Container(
+                    height: (mediaQuery.size.height -
+                            appBar.preferredSize.height -
+                            mediaQuery.padding.top) *
+                        0.7,
+                    child: Chart(_recentTransactions))
+                : txListWidget,
+        ])));
 
     return Platform.isIOS
         ? CupertinoPageScaffold(
